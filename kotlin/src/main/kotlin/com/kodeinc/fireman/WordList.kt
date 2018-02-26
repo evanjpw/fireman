@@ -52,6 +52,8 @@ abstract class BucketCollection<K : Comparable<K>> {
 
     operator fun get(key : K) : Bucket? = buckets[key]
 
+    fun getByWord(word : String) = get(transformToKey(word))
+
     operator fun contains(key: K) : Boolean = key in buckets
 
     operator fun plus(word : String) {
