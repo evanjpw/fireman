@@ -4,7 +4,7 @@ import org.apache.commons.io.IOUtils
 import java.nio.charset.Charset
 
 object WordList {
-    private const val WORDS_LST = "/words_alpha.txt"
+    private const val WORDS_LST = "/words.txt"
     private val WORDS_LST_ENCODING = Charset.forName("UTF-8")
 
     private fun readWordList() : Array<String> {
