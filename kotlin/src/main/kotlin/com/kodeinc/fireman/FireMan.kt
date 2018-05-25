@@ -11,16 +11,16 @@ fun main(args: Array<String>) {
     val (bestDepth, bestLength) = solver.solve()
 
     if (!bestDepth.isEmpty) {
-        println("Found word with best depth ${bestDepth.word}, with depth of ${bestDepth.depth}")
+        println("Found word with greatest number of sub-words ${bestDepth.word}, with count of ${bestDepth.depth} sub-words.")
     } else {
-        println("No best depth word found")
+        println("No word found that meets the criteria.")
     }
 
-    if (!bestLength.isEmpty) {
-        println("Found best length word ${bestLength.word}, with deptth of ${bestLength.depth}")
-    } else {
-        println("No best length word found")
-    }
+//    if (!bestLength.isEmpty) {
+//        println("Found best length word ${bestLength.word}, with deptth of ${bestLength.depth}")
+//    } else {
+//        println("No best length word found")
+//    }
 
     println("Done")
 }
