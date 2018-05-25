@@ -40,7 +40,7 @@ class Solver {
         }
         var bestDepth = 0
         val bucket = tlBuckets.getByWord(word)
-        bucket?.takeWhile { it.length <= word.length && it.length >= 3}?.forEach {
+        bucket?.filter { it.length <= word.length && it.length >= 3}?.forEach {
               if (word.startsWith(it, ignoreCase = true)) {
                 val nDepth = tryWord(word.substring(it.length), depth + 1)
                 if (nDepth > bestDepth) {
