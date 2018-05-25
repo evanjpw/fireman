@@ -8,10 +8,10 @@ fun main(args: Array<String>) {
 
     // solver.printBuckets()
 
-    val (bestDepth, bestLength) = solver.solve()
+    val (bestDepth, _) = solver.solve()  //bestLength
 
     if (!bestDepth.isEmpty) {
-        println("Found word with greatest number of sub-words ${bestDepth.word}, with count of ${bestDepth.depth} sub-words.")
+        println("Found word with greatest number of sub-words: \"${bestDepth.word}\", with a count of ${bestDepth.depth} sub-words.")
     } else {
         println("No word found that meets the criteria.")
     }
