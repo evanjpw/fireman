@@ -22,7 +22,8 @@ class Solver {
     fun solve() : Pair<WordDepthPair, WordDepthPair> {
         var bestLength : WordDepthPair = EMPTY_WORD_DEPTH_PAIR
         var bestDepth : WordDepthPair = EMPTY_WORD_DEPTH_PAIR
-        for (word in WordList.reverseOrderedWords) {
+        val words = WordList.reverseOrderedWords.takeWhile { it.length >= 3 }
+        for (word in words) {
             val depth = tryWord(word)
             if (depth > bestDepth.depth) {
                 bestDepth = WordDepthPair(word, depth)

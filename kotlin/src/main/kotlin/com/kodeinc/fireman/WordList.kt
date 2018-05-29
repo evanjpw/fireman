@@ -3,6 +3,31 @@ package com.kodeinc.fireman
 import org.apache.commons.io.IOUtils
 import java.nio.charset.Charset
 
+internal fun makeLengthComparator(reversed: Boolean = false) : Comparator<CharSequence> {
+    val leftIsLess = if (reversed) 1 else -1
+    val leftIsGreater = if (reversed) -1 else 1
+
+    return Comparator { lhs, rhs ->
+        val ll = lhs.length
+        val rl = rhs.length
+        when {
+            ll < rl -> leftIsLess
+            ll > rl -> leftIsGreater
+            else -> 0
+        }
+    }
+}
+
+//Comparator { lhs, rhs ->
+//    val ll = lhs.length
+//    val rl = rhs.length
+//    when {
+//        ll < rl ->
+//            ll > rl ->
+//        else -> 0
+//    }
+//}
+
 object WordList {
     private const val WORDS_LST = "/words.txt"
     private val WORDS_LST_ENCODING = Charset.forName("UTF-8")
@@ -18,15 +43,7 @@ object WordList {
     }
 
     val reverseOrderedWords by lazy {
-        words.sortedArrayWith(Comparator { lhs, rhs ->
-            val ll = lhs.length
-            val rl = rhs.length
-            when {
-                ll < rl -> 1
-                ll > rl -> -1
-                else -> 0
-            }
-        })
+        words.sortedArrayWith(makeLengthComparator(reversed = true))
     }
 }
 
@@ -34,15 +51,8 @@ typealias Bucket = List<String>
 
 internal typealias MutableBucket = ArrayList<String>
 
-internal fun MutableBucket.lengthOrder() = this.sortWith(Comparator { lhs, rhs ->
-    val ll = lhs.length
-    val rl = rhs.length
-    when {
-        ll < rl -> -1
-        ll > rl -> 1
-        else -> 0
-    }
-})
+
+internal fun MutableBucket.lengthOrder() = this.sortWith(com.kodeinc.fireman.makeLengthComparator())
 
 
 abstract class BucketCollection<K : Comparable<K>> {
