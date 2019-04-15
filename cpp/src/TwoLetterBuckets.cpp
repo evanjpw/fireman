@@ -18,13 +18,15 @@ TwoLetterBuckets::TwoLetterBuckets() = default;
 TwoLetterBuckets::~TwoLetterBuckets() = default;
 
 void TwoLetterBuckets::add(const string &word) {
-    shared_ptr<string> key = wordToKey(word);
+    string key(word, 0, 2);
+
+//    shared_ptr<string> key = wordToKey(word);***
     Bucket * bucket = nullptr;
-    if (!buckets.count(*key)) {
+    if (!buckets.count(key)) {
         bucket = new Bucket;
-        buckets[*key] = bucket;
+        buckets[key] = bucket;
     } else {
-        bucket = buckets[*key];
+        bucket = buckets[key];
     }
     bucket->push_back(word);
 }
@@ -37,8 +39,9 @@ void TwoLetterBuckets::sort_buckets() {
 }
 
 Bucket* TwoLetterBuckets::getByWord(const std::string &word) const {
-    shared_ptr<string> key = wordToKey(word);
-    return buckets.count(*key) ? buckets.at(*key) : nullptr;
+    string key(word, 0, 2);
+//    shared_ptr<string> key = wordToKey(word);**
+    return buckets.count(key) ? buckets.at(key) : nullptr;
 }
 
 shared_ptr<string> TwoLetterBuckets::wordToKey(const string &word) const {

@@ -11,6 +11,11 @@
 
 using namespace std;
 
+bool compareWordsByLengthDescending(const string &first_word, const string &second_word) {
+    return first_word.length() > second_word.length();
+}
+
+
 static const string WORD_LIST_FILE_PATH = "../words.txt";
 
 WordList::WordList() {
@@ -23,14 +28,14 @@ WordList::WordList() {
 		// print some useful information about the_words not being
 		// Initialized because the file stream == NULL;
 	}
-	the_reversed_words_longer_than_three = NULL;
-	the_reversed_words = NULL;
+	the_reversed_words_longer_than_three = nullptr;
+	the_reversed_words = nullptr;
 }
 
 WordList::~WordList() {
-	if(the_reversed_words)
+
 		delete the_reversed_words;
-	if(the_reversed_words_longer_than_three)
+
 		delete the_reversed_words_longer_than_three;
 }
 
@@ -42,9 +47,8 @@ vector<string> *WordList::reversed_words_longer_than_3() {
 	if (!the_reversed_words_longer_than_three) {
 		vector<string> *rwords = reversed_words();
 		the_reversed_words_longer_than_three = new vector<string>();
-		for (int i = 0; i < rwords->size(); i++) {
-			string &word = (*rwords)[i];
-			if (word.length() >= 3) {
+		for (auto & word : *rwords) {
+				if (word.length() >= 3) {
 				the_reversed_words_longer_than_three->push_back(word);
 			}
 		}
@@ -53,7 +57,10 @@ vector<string> *WordList::reversed_words_longer_than_3() {
 }
 
 vector<string> *WordList::reversed_words() {
-	if (!the_reversed_words)
-		the_reversed_words = new vector<string>(the_words.rbegin(), the_words.rend());
-	return the_reversed_words;
+    if (!the_reversed_words) {
+        the_reversed_words = new vector<string>(the_words);
+        std::sort (the_reversed_words->begin(), the_reversed_words->end(), compareWordsByLengthDescending);
+    }
+    return the_reversed_words;
 }
+//.r.r

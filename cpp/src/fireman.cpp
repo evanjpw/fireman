@@ -14,7 +14,7 @@ using namespace std;
 
 
 FireMan::FireMan() {
-	const vector<string> *words = word_list.words();
+	const vector<string> *words = word_list.reversed_words();
 	for (const auto & word : *words)
 		two_letter_buckets.add(word);
 	two_letter_buckets.sort_buckets();
@@ -31,6 +31,9 @@ pair<WordDepthPair, WordDepthPair> *FireMan::solve() {
 	vector<string> *words = word_list.reversed_words_longer_than_3();
 	for (auto & i : *words) {
 		string *word = &i;
+		//g()
+		if (word->length() < (bestDepthPair.depth * 3))
+            continue;
 		int depth = tryWord(*word);
 		if (depth > bestDepthPair.depth) {
 			bestDepthPair.word = word;
@@ -51,30 +54,32 @@ int FireMan::tryWord(const string &word, int depth)	const {
         return depth;
     int best_depth = 0;
     Bucket *bucket = two_letter_buckets.getByWord(word);
+
     if (bucket) {
-        Bucket filtered_bucket(bucket->size());
-        std::copy_if(bucket->begin(),
-                     bucket->end(),
-                     std::back_inserter(filtered_bucket),
-                     [word_length](string b_word) {
-                         int b_word_length = b_word.length();
-                         if (b_word_length <= word_length) {
-                             return b_word_length >= 3;
-                         } else {
-                             return false;
-                         }
-                     });
-        std::for_each(filtered_bucket.begin(),
-                      filtered_bucket.end(),
-                      [word, &best_depth, this, depth](string &sub_word) {
-                        const int sub_word_length = sub_word.length();
-                          if (sub_word_length && !word.compare(0, sub_word_length, sub_word)) {
-                              int ndepth = this->tryWord(word.substr(sub_word.length()), depth + 1);
-                              if (ndepth > best_depth)
-                                  best_depth = ndepth;
-                          }
-                      });
+        //sub_word_iterator;.() //sub_word_length &&
+        for(const auto& sub_word : *bucket) {
+            const int sub_word_length = sub_word.length();
+            if (sub_word_length <= word_length && sub_word_length >= 3 &&
+                !strncmp(word.c_str(), sub_word.c_str(), sub_word_length)
+                //!word.compare(0, sub_word_length, sub_word)
+                ) {
+                const string word_fragment(word.substr(sub_word_length));
+                const int ndepth = this->tryWord(word_fragment, depth + 1);
+                if (ndepth > best_depth)
+                    best_depth = ndepth;
+            }
+        }
     }
+
     return best_depth;
 }
-//
+//            int b_word_length = sub_word.length();
+//                      [word, &best_depth, this, depth, word_length](string &sub_word) ->begin();  bucket->end() != sub_word_iterator; ++sub_word_iteratorsub_word_iterator
+//        string  = sub_word_iteratorord_iterator->
+//        Bucket filtered_bucket(bucket->size());
+//        std::copy_if(bucket->begin(),
+//                     bucket->end(),
+//                     std::back_inserter(filtered_bucket),
+//                     [](string b_word) {
+//                     });filtered_filtered_
+// else {return false;};

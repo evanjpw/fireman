@@ -13,12 +13,11 @@ WordDepthPair::WordDepthPair(string& word, const int depth) {
 }
 
 WordDepthPair::WordDepthPair() {
-	this->word = NULL;
+	this->word = nullptr;
 	this->depth = 0;
 }
 
-WordDepthPair::~WordDepthPair() {
-}
+WordDepthPair::~WordDepthPair() = default;
 
 int WordDepthPair::compare(const WordDepthPair& other) const {
 	if (other.depth > depth)

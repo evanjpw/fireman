@@ -14,7 +14,7 @@ using namespace std;
 
 class WordDepthPair {
 public:
-	WordDepthPair(string& word, const int depth);
+	WordDepthPair(string& word, int depth);
 	WordDepthPair();
 	virtual ~WordDepthPair();
 	int size() const { return word ? word->size() : 0; }
