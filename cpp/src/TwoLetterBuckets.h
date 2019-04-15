@@ -8,8 +8,9 @@
 #ifndef TWOLETTERBUCKETS_H_
 #define TWOLETTERBUCKETS_H_
 
-#include <unordered_map>
+#include <memory>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 using namespace std;
@@ -24,7 +25,9 @@ public:
 	void add(const std::string &word);
 	Bucket *getByWord(const std::string &word) const;
 private:
-	std::unordered_map<std::string, *Bucket> buckets;
+	std::unordered_map<std::string, Bucket*> buckets;
+	//, string &key
+	shared_ptr<string> wordToKey(const string &word) const;
 };
 
 #endif /* TWOLETTERBUCKETS_H_ */

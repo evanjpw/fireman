@@ -7,8 +7,8 @@
 
 #include "WordDepthPair.h"
 
-WordDepthPair::WordDepthPair(const string& word, const int depth) {
-	this->word = word;
+WordDepthPair::WordDepthPair(string& word, const int depth) {
+	this->word = &word;
 	this->depth = depth;
 }
 

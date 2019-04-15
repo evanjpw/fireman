@@ -15,7 +15,7 @@ class WordList {
 public:
 	WordList();
 	virtual ~WordList();
-	std::vector<std::string> *words() const;
+	const std::vector<std::string> *const words() const;
 	std::vector<std::string> *reversed_words();
 	std::vector<std::string> *reversed_words_longer_than_3();
 private:

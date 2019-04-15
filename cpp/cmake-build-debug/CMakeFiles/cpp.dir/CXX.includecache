@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/evanjpw/src/fireman/cpp/src/TwoLetterBuckets.cpp
+TwoLetterBuckets.h
+/Users/evanjpw/src/fireman/cpp/src/TwoLetterBuckets.h
+
+/Users/evanjpw/src/fireman/cpp/src/TwoLetterBuckets.h
+memory
+-
+string
+-
+unordered_map
+-
+vector
+-
+

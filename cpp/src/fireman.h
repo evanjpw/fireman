@@ -24,4 +24,4 @@ private:
 	std::pair<WordDepthPair, WordDepthPair> *solution;
 };
 
-#endif /* FIREMAN_H_
+#endif /* FIREMAN_H_ */

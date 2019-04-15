@@ -18,8 +18,8 @@ int main() {
 	// prints !!!Hello World!!!!!!Hello World!!!
 
 	pair<WordDepthPair, WordDepthPair> *result = fire_man.solve();
-	cout << "Best Depth " << "Word:" << result->first.word << "Depth:" << result->first.depth << endl;
-	cout << "Best Length " << "Word:" << result->second.word << "Depth:" << result->second.depth << endl;
+	cout << "Best Depth " << "Word:" << *(result->first.word) << " Depth:" << result->first.depth << endl;
+	cout << "Best Length " << "Word:" << *(result->second.word) << " Depth:" << result->second.depth << endl;
 	return 0;
 }
 

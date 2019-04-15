@@ -11,7 +11,7 @@
 
 using namespace std;
 
-static const string WORD_LIST_FILE_PATH = "./words.txt";
+static const string WORD_LIST_FILE_PATH = "../words.txt";
 
 WordList::WordList() {
 	ifstream word_list_stream(WORD_LIST_FILE_PATH);
@@ -19,6 +19,7 @@ WordList::WordList() {
 		for(string line; getline(word_list_stream, line);)
 			this->the_words.push_back(line);
 	} else {
+	    cerr << "Could not find file: " << WORD_LIST_FILE_PATH << endl;
 		// print some useful information about the_words not being
 		// Initialized because the file stream == NULL;
 	}
@@ -33,7 +34,7 @@ WordList::~WordList() {
 		delete the_reversed_words_longer_than_three;
 }
 
-std::vector<std::string> *WordList::words() const {
+const vector<string> *const WordList::words() const {
 	return &the_words;
 }
 
