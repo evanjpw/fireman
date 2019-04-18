@@ -32,8 +32,11 @@ pair<WordDepthPair, WordDepthPair> *FireMan::solve() {
 	for (auto & i : *words) {
 		string *word = &i;
 		//g()
-		if (word->length() < (bestDepthPair.depth * 3))
-            continue;
+		if (word->length() < (bestDepthPair.depth * 3) && word->length() < bestLengthPair.length()) {
+//            continue;
+            solution = new std::pair<WordDepthPair, WordDepthPair>(bestDepthPair, bestLengthPair);
+            return solution;
+		}
 		int depth = tryWord(*word);
 		if (depth > bestDepthPair.depth) {
 			bestDepthPair.word = word;
