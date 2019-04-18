@@ -25,6 +25,10 @@ class Solver {
         val words = WordList.reverseOrderedWords.takeWhile { it.length >= 3 }
         for (word in words) {
             val depth = tryWord(word)
+            if (word.length < (3 * bestDepth.depth) && word.length < bestLength.length) {
+                return Pair(bestDepth, bestLength)
+                //continue
+            }
             if (depth > bestDepth.depth) {
                 bestDepth = WordDepthPair(word, depth)
             }
